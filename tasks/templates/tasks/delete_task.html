@@ -17,7 +17,7 @@
 	}
 
 	.center-column{
-        text-align: justify;
+        text-align: center;
 
 		width:65%;
 		margin: 20px auto;
@@ -34,16 +34,16 @@
 	
 
 </style>
-
 <div class="center-column">
-    <div class="heading">
-        <h3>Update Task</h3>
-    <hr>
-    </div>
 
-<form method='POST' action="">
+
+<p>Are you sure you want to delete "{{item}}"</p>
+
+
+<form action="" method="POST">
+    <a class="btn btn-sm btn-info" href="{% url 'list' %}">Cancel</a>
+
     {% csrf_token %}
-    {{form}}
-    <input class="btn btn-sm btn-success" type="submit" name="Update Task">
+    <input class="btn btn-sm btn-success" type="submit" name="Confirm">
 </form>
 </div>
