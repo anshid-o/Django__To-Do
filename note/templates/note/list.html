@@ -24,6 +24,14 @@
 	.submit{
 		background-color: #6BA3E8;
 	}
+	.row{
+		margin: 15px;
+	}
+	.row p{
+		padding-left: 10px;
+		padding-top: 10px;
+		padding-right: 30px;
+	}
 
 	.center-column{
 		width:65%;
@@ -60,32 +68,37 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">To Do</a>
-    <a href="{% url 'listN' %}"><button class="btn btn-success navbar-btn">Save a note</button></a>
+    <a class="navbar-brand" href="#">Notes</a>
+    <a href="{% url 'list' %}"><button class="btn btn-success navbar-btn">Goto To Do</button></a>
   </div>
 </nav>
 	
 
 <div class="center-column">
-<form method="POST" action="/">
+<form method="POST" action="">
     {%  csrf_token  %}
+	
     {{form.title}}
-    <input class="btn btn-info" type="submit" name="Create Task">
+	<div class="row">
+		<p>Description :</p>
+		{{form.desc}}
+	</div>
+	
+    <input class="btn btn-info" type="submit" name="Create Note">
 </form>
 
-{% for task in tasks %}
+{% for task in note %}
     <div class="item-row">
-        <a class="btn btn-sm btn-info" href="{% url 'update_task' task.id %}">Update</a>
+        <a class="btn btn-sm btn-info" href="{% url 'update_Note' task.id %}">Update</a>
 
               
-        <a class="btn btn-sm btn-danger" href="{% url 'delete_task' task.id %}">Delete</a>
+        <a class="btn btn-sm btn-danger" href="{% url 'delete_Note' task.id %}">Delete</a>
 
            
-                    {% if task.complete == True %}
-                      <strike>{{task}}</strike>
-                    {% else %}
-                    <span>{{task}}</span>
-                    {% endif %}
+                    
+                    <span>{{task.title}}</span>
+					<span>{{task.desc}}</span>
+                
                     
                 
                    
